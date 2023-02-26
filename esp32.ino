@@ -72,8 +72,8 @@ void loop() {
   float lembab = dht.readHumidity();
   float suhu = dht.readTemperature();
 
-  if (isnan(suhu) || isnan(lembab)) {
-    Serial.println(F("Gagal membaca sensor DHT!"));
+  if (isnan(lembab) || isnan(suhu)) {
+    Serial.println(F("Failed to read from DHT sensor!"));
     return;
   }
   else {
@@ -95,31 +95,31 @@ void loop() {
       Serial.printf("Get bool rel 3... %s\n", Firebase.RTDB.getBool(&fbdo, F("/Relay/Relay3"), &relVal3) ? relVal3 ? "true" : "false" : fbdo.errorReason().c_str());
       Serial.printf("Get bool rel 4... %s\n", Firebase.RTDB.getBool(&fbdo, F("/Relay/Relay4"), &relVal4) ? relVal4 ? "true" : "false" : fbdo.errorReason().c_str());
 
-      if (relVal1 == "true") {
+      if (relVal1 == true) {
         digitalWrite(RELAY1, LOW);
       }
-      else if (relVal1 == "false") {
+      else if (relVal1 == false) {
         digitalWrite(RELAY1, HIGH);
       }
 
-      if (relVal2 == "true") {
+      if (relVal2 == true) {
         digitalWrite(RELAY2, LOW);
       }
-      else if (relVal2 == "false") {
+      else if (relVal2 == false) {
         digitalWrite(RELAY2, HIGH);
       }
 
-      if (relVal3 == "true") {
+      if (relVal3 == true) {
         digitalWrite(RELAY3, LOW);
       }
-      else if (relVal3 == "false") {
+      else if (relVal3 == false) {
         digitalWrite(RELAY3, HIGH);
       }
 
-      if (relVal4 == "true") {
+      if (relVal4 == true) {
         digitalWrite(RELAY4, LOW);
       }
-      else if (relVal4 == "false") {
+      else if (relVal4 == false) {
         digitalWrite(RELAY4, HIGH);
       }
     }
